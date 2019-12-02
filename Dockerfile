@@ -40,5 +40,4 @@ RUN set -ex; \
 VOLUME [ "/app/data" ]
 USER nadeko
 
-COPY docker-entrypoint.sh /
-CMD ["./docker-entrypoint.sh"]
+CMD ["./docker-run.sh"]
