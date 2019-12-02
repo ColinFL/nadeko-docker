@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DATA=/app/data
+DATA=/mnt/server/data
 
 # https://gitlab.com/Kwoth/nadekobot/commit/835b2276145435f70d516913d87708f4e935cd54
 [ -f "$DATA/pokemon/pokemon_abilities7.json" ] && [ ! -e "$DATA/pokemon/pokemon_abilities.json" ] && \

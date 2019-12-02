@@ -6,7 +6,7 @@ WORKDIR /nadekoBot/src/NadekoBot
 RUN set -ex; \
     dotnet restore; \
     dotnet build -c Release; \
-    dotnet publish -c Release -o /mnt/server
+    dotnet publish -c Release -o /mnt/server/
 
 WORKDIR /mnt/server
 RUN set -ex; \
@@ -26,11 +26,13 @@ RUN set -ex; \
         libsodium \
         opus \
         rsync; \
-    adduser -D nadeko; \
-    chown nadeko /mnt/server; \
+	USER container
+	ENV  USER container
+	ENV  HOME /home/container
+    chown container /mnt/server; \
     chmod u+w /mnt/server; \
     mv /mnt/server/data /mnt/server/data-default; \
-    install -d -o nadeko -g nadeko -m 755 /mnt/server/data;
+    install -d -o container -g container -m 755 /mnt/server/data;
 
 # workaround for the runtime to find the native libs loaded through DllImport
 RUN set -ex; \
@@ -38,7 +40,7 @@ RUN set -ex; \
     ln -s /usr/lib/libsodium.so.23 /mnt/server/libsodium.so
 
 VOLUME [ "/mnt/server/data" ]
-USER nadeko
+USER container
 
 COPY docker-entrypoint.sh /
 CMD ["/docker-entrypoint.sh"]
