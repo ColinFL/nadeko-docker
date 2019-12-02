@@ -40,4 +40,6 @@ RUN set -ex; \
 VOLUME [ "/mnt/server/data" ]
 USER nadeko
 
+COPY docker-entrypoint.sh /
 CMD ["/docker-entrypoint.sh"]
+
