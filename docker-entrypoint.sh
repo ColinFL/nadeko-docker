@@ -18,4 +18,4 @@ DATA=/app/data
 
 rsync -rv --ignore-existing $DATA-default/ $DATA/
 
-exec dotnet /app/NadekoBot.dll
+exec dotnet /mnt/server/NadekoBot.dll
